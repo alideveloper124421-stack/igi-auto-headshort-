@@ -24,11 +24,26 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Generate debug keystore
+        run: |
+          if [ ! -f debug.keystore ]; then
+            STORE_PASS=$(grep -E "storePassword" app/build.gradle* 2>/dev/null | grep -Ev "getenv|Property" | head -n 1 | sed -E 's/.*["'\'']([^"'\'']+)["'\''].*/\1/')
+            KEY_PASS=$(grep -E "keyPassword" app/build.gradle* 2>/dev/null | grep -Ev "getenv|Property" | head -n 1 | sed -E 's/.*["'\'']([^"'\'']+)["'\''].*/\1/')
+            KEY_ALIAS=$(grep -E "keyAlias" app/build.gradle* 2>/dev/null | grep -Ev "getenv|Property" | head -n 1 | sed -E 's/.*["'\'']([^"'\'']+)["'\''].*/\1/')
+            keytool -genkeypair -v \
+              -keystore debug.keystore \
+              -storepass "${STORE_PASS:-android}" \
+              -alias "${KEY_ALIAS:-androiddebugkey}" \
+              -keypass "${KEY_PASS:-android}" \
+              -keyalg RSA \
+              -keysize 2048 \
+              -validity 10000 \
+              -dname "CN=Android Debug,O=Android,C=US"
+          fi
+
       - name: Build debug APK
         run: |
-          GRADLEW_PATH=$(find . -maxdepth 3 -name "gradlew" | head -n 1)
-          if [ -n "$GRADLEW_PATH" ]; then
-            cd "$(dirname "$GRADLEW_PATH")"
+          if [ -f ./gradlew ]; then
             chmod +x ./gradlew
             ./gradlew assembleDebug --stacktrace
           else
