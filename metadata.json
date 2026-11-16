@@ -1,0 +1,8 @@
+{
+  "name": "Project I.G.I.",
+  "description": "Tactical stealth FPS Android launcher, SAF game folder verifier, content pack layer manager, and mission briefing shell for Project I.G.I.: I'm Going In.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

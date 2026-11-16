@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Project IGI</string>
+    <string name="launcher_title">PROJECT I.G.I.: I\'M GOING IN</string>
+    <string name="launcher_subtitle">AUTHENTIC GAME FILES REQUIRED</string>
+    <string name="status_initializing">INITIALIZING SYSTEM ASSEMBLIES...</string>
+    <string name="status_select_folder">SELECT GAME FOLDER TO CONTINUE</string>
+    <string name="status_verified">GAME FILES VERIFIED &amp; READY!</string>
+    <string name="status_invalid_folder">INVALID GAME FOLDER</string>
+    <string name="label_renderer">RENDERER</string>
+    <string name="btn_vulkan">VULKAN</string>
+    <string name="btn_webgpu">WEBGPU</string>
+    <string name="btn_select_folder">SELECT GAME FOLDER</string>
+    <string name="btn_play">PLAY</string>
+    <string name="btn_install_pack">INSTALL CONTENT PACK</string>
+    <string name="btn_disable_content">DISABLE ALL CONTENT</string>
+    <string name="btn_preview_menu">OPEN CAMPAIGN &amp; ENGINE</string>
+</resources>
